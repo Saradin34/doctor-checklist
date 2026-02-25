@@ -1,0 +1,131 @@
+@use './../styles/variables' as *;
+@use './../styles/mixins' as *;
+
+.card {
+  background: $white;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-lg;
+  padding: $spacing-6;
+  transition: all $transition-base;
+  border: 1px solid $gray-100;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+    border-color: $primary-light;
+  }
+
+  &-glass {
+    @include glass-effect;
+    backdrop-filter: blur(10px);
+  }
+
+  &-gradient {
+    background: $gradient-primary;
+    color: $white;
+
+    .card-title, .card-text {
+      color: $white;
+    }
+  }
+
+  &-header {
+    @include flex-between;
+    margin-bottom: $spacing-4;
+  }
+
+  &-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $gray-900;
+    margin-bottom: $spacing-2;
+  }
+
+  &-text {
+    color: $gray-600;
+    line-height: 1.6;
+  }
+
+  &-footer {
+    margin-top: $spacing-4;
+    padding-top: $spacing-4;
+    border-top: 1px solid $gray-100;
+  }
+
+  &-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: $spacing-4;
+    margin-bottom: $spacing-6;
+  }
+}
+
+.stat-card {
+  background: $gradient-primary;
+  border-radius: $radius-xl;
+  padding: $spacing-6;
+  color: $white;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity $transition-base;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &-icon {
+    position: absolute;
+    top: $spacing-4;
+    right: $spacing-4;
+    background: rgba(255, 255, 255, 0.2);
+    padding: $spacing-3;
+    border-radius: $radius-lg;
+    backdrop-filter: blur(5px);
+  }
+
+  &-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: $spacing-2;
+  }
+
+  &-label {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &-footer {
+    margin-top: $spacing-4;
+    font-size: 0.875rem;
+    opacity: 0.8;
+  }
+}
+
+.stat-card-blue {
+  background: linear-gradient(135deg, $primary, $primary-dark);
+}
+
+.stat-card-green {
+  background: linear-gradient(135deg, $success, $primary);
+}
+
+.stat-card-purple {
+  background: linear-gradient(135deg, $secondary, $secondary-dark);
+}
